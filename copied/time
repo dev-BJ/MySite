@@ -1,0 +1,73 @@
+<?php function timeago($get_time){
+
+  $now=time();
+
+  $time=strtotime($get_time);
+
+  $difference=$now-$time;
+
+  $t="error";
+
+    $minutes=$difference/60;
+
+    $hour=$minutes/60;
+
+    $day=$hour/24;
+
+    if($difference>=0 and $difference<65) {
+
+      $t="Just now";
+
+    }
+
+    else if($minutes<60){
+
+      $minutes=round($minutes);
+
+      $t=$minutes." minutes ago";
+
+    }
+
+    else if($hour<12) {
+
+      $hour=round($hour);
+
+      $t=$hour." hours ago";
+
+    }
+
+    else if($hour<24){
+
+      $t=" Today ".date('g:i a',$time);
+
+    }
+
+    else if($hour<48){
+
+      $t=" Yesterday ".date('g:i a',$time);
+
+    }
+
+    else if($day<7){
+
+      $t=date('l ',$time)."at ".date('g:i a',$time);
+
+    }
+
+    else if($day<365 and date('Y',$time)==date('Y')){
+
+      $t=date(' M j',$time)." at ".date('g:i a',$time);
+
+    }
+
+    else if($day>365 or date('Y',$time)!=date('Y')){
+
+      $t=date(' M j,Y',$time)." at ".date('g:i a',$time);
+
+    }
+
+    echo $t;
+
+  }
+
+?>

@@ -1,0 +1,150 @@
+<?php
+include "al.php";
+include "var.php";
+
+sd::on();
+ob::on();
+error::__init();
+login::log(new fm($_COOKIE),$_SESSION);
+?>
+<!doctype HTML>
+	<html>
+		<head>
+			<link href="/css/style.css"  type="text/css"  rel="stylesheet" />
+				<script src="/js/jquery.js" >
+				</script>
+					<script src="/js/9js.js" >
+					</script>
+						<script src="js/index.js">
+						</script>
+						<meta name="viewport" content="width=device-width,initial-scale=0.621">
+							<meta name="description" content="homepage"></meta>
+							<meta name="handheld"></meta>
+							<meta name="RSS"></meta>
+							
+							<title>
+						<?php
+						echo util::$sn."|Home";
+						 ?>
+							</title>
+							
+						<?php
+						if(isset($_SESSION["user"])) {
+							$user=$_SESSION["user"];
+						} else {
+							$user="guest";
+						}
+						?>
+						
+									<style>
+										.bar1
+										{
+											height : 60px;
+											width : 100%;
+										}
+										
+										.bar1 .date
+										{
+											position : relative;
+											bottom : 20px;
+										}
+										
+										.bar2
+										{
+											height : 80px;
+											width : 100%;
+										}
+										
+										.bar2 .date
+										{
+											position : relative;
+											bottom : 50px;
+											font-size : 20px;
+											float : left;
+										}
+										
+										.bar2 a
+										{
+											position : relative;
+											bottom : 0px;
+											float : left;
+										}
+										
+										.foot
+										{
+											height : 50px;
+											width : 100%;
+										}
+										
+										.bar3
+										{
+											height : auto;
+											width : 100%;
+										}
+										
+										.c
+										{
+											top : 20px;
+										}
+											</style>
+												</head>
+													
+												<body onload="greet()" >
+													<div class="bar1" >
+													
+														<div id="t"  >
+															<?php echo util::$sn; ?>
+																</div>
+																
+																	<span id="date" class="date" >
+																	</span>
+																	
+																</div>
+																	
+																<div class="text" >
+																
+																	<span id="greet">
+																<?php
+																echo basic::greet();
+																 ?>
+																	</span>
+																		<span>
+																	<?=$user?>
+																		</span>
+																			<span>
+																			
+																				<noscript>Turn on JavaScript
+																				</noscript>
+																				
+																			</span>
+																			
+																				<span class="text-error" >
+																				
+																			
+																				</span>
+																				
+																			</div>
+																				
+																			<div class="bar2"  >
+																			</div>
+																			
+																					<style>
+																						a[href^="/post"]
+																						{
+																							display : inline-block;
+																							position : relative;
+																							left : 140px;
+																						}
+																							</style>
+																								
+																									<div class="bar3">
+
+																									</div>
+																									
+																									<footer class="foot">
+																								<?php
+																								include"footer.php";
+																								?>
+																									</footer>
+																								</body>
+																							</html>
