@@ -14,7 +14,7 @@
 </style>
 
 <?php
-$install=1;
+$install=0;
 //error callback
 $error=function($no,$err,$path,$line){
 	echo "<div class='alert alert-danger'><span class='text text-danger'>[$no]-$err in $path on line $line</span></div>";

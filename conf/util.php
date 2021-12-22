@@ -4,9 +4,9 @@ class util{
 	
 	public static $sn="9japulse";
 	public static $host="localhost";
-	public static $user="root";
-	public static $pass="";
-	public static $db="9japulse";
+	public static $user="id17308711_testsite";
+	public static $pass="ahb#x1<!U%\Rb<>F";
+	public static $db="id17308711_test_site";
 	private static $token;
 
 	public static function rdr($path,$err=null) {
