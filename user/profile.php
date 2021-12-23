@@ -1,4 +1,4 @@
-<!doctype HTML>
+<?php ob_start(); ?>
 <?php
 include "../al.php";
 
@@ -8,8 +8,10 @@ if(!isset($_SESSION["user"])) util::rdr("/index");
 $conn=mydb::conn();
 $q="select * from user where id=".$_SESSION["id"];
 $q=$conn->query($q);
-$data=$q->fetch(PDO::FETCH_ASSOC);
+
+$data=$q->fetch_assoc();
 ?>
+<!doctype HTML>
 	<html>
 		<head>
 			<link href="/css/style.css"  type="text/css"  rel="stylesheet" />

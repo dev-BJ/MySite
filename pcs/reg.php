@@ -1,42 +1,54 @@
 <?php
+ob_start();
 include "../al.php";
-
-var_dump($_POST);
+include "../var.php";
 
 if(!req::get("p")->has("user")) {
-	util::header("e","auth/reg.php",md5("ue"));
+	util::rdr("auth/reg",md5("ue"));
+	echo "error 7";
 	exit;
 }
+
 if(!req::get("p")->has("pass")) {
-	util::header("e","/auth/reg.php",md5("pe"));
+	util::rdr("/auth/reg",md5("pe"));
+	echo "error 13";
 	exit;
-} else
+}
 	
  if(strlen(req::get("p")->get("pass"))<6) {
-	util::header("e","/auth/reg.php",md5("pl"));
+	util::rdr("/auth/reg",md5("pl"));
+	echo "error 19";
 	exit;
-} else
+}
 	
  if(!preg_match("/[a-zA-Z0-9]/",req::get("p")->get("pass"))) {
-	util::header("e","/auth/reg.php",md5("pbf"));
+	util::rdr("/auth/reg",md5("pbf"));
+	echo "error 25";
 	exit;
 }
+
  if(!req::get("p")->has("email")) {
-	util::header("e","/auth/reg.php",md5("ee"));
+	util::rdr("/auth/reg",md5("ee"));
 	exit;
-} else
+}
+
 	 if(!preg_match_all( "/([\w])+(@+)(gmail|yahoo|hotmail)\.com/",req::get("p")->get("email"))){
-util::header("e","/auth/reg.php",md5("ebf"));
+util::rdr("/auth/reg",md5("ebf"));
 exit;
 }
+
 if(!req::get("p")->has("gender")) {
-	util::header("e","/auth/reg.php",md5("ge"));
+	util::rdr("/auth/reg",md5("ge"));
 	exit;
 }
+
 if(!req::get("p")->has("date")) {
-	util::header("e","/auth/reg.php",md5("ed"));
+	util::rdr("/auth/reg",md5("ed"));
 	exit;
-} else {
-	$status="online";
+}else{
+    $status="online";
 }
-Core::register(mydb::conn(),util::gd(req::get("p")->get("user")),req::get("p")->get("user"),req::get("p")->get("pass"),req::get("p")->get("email"),req::get("p")->get("gender"),req::get("p")->get("date"),$status);
+
+core::register(mydb::conn(),util::gd(req::get("p")->get("user")),req::get("p")->get("user"),req::get("p")->get("pass"),req::get("p")->get("email"),req::get("p")->get("gender"),req::get("p")->get("date"),$status);
+
+ob_end_flush();

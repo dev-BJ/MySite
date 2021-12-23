@@ -9,10 +9,13 @@ if(isset($_GET["page"])) {
 	$page=1;
 }
 $page=($page-1)*10;
-$sql="select *,post.id as code,count(*) as c from post,user";
+$sql="select *,post.id as code from post,user";
+$co="select count(*) as c from post";
+$cou=$db->query($co);
+$coun=$cou->fetch_assoc();
 $q=$db->query($sql);
 $data=$q->fetch_assoc();
-for($i=0;$i<$data["c"];$i++) {
+for($i=0;$i<($coun["c"]);$i++) {
 ?>
 
 	<div class='c' >
@@ -32,7 +35,7 @@ for($i=0;$i<$data["c"];$i++) {
 	<hr >
 	<?php
 }
-for($i=2;$i<(count($data)/10);$i++) {
+for($i=2;$i<(count($coun["c"])/10);$i++) {
 	echo "<a href='index.php?page=$i' class='press color' >$i</a>";
 }
 

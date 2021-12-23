@@ -1,3 +1,7 @@
+<?php
+ob_start();
+session_start();
+?>
 <!DOCTYPE html>
 <?php
 include "conf/sd.php";
@@ -8,10 +12,6 @@ include "conf/basic.php";
 include "conf/fm.php";
 include "conf/mydb.php";
 include "var.php";
-
-sd::on();
-ob::on();
-login::auto();
 ?>
 	<html>
 		<head>

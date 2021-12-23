@@ -3,7 +3,6 @@
 class basic {
 	public static function greet() {
 		$hour=date("H");
-		echo $hour;
 		if ($hour < 12) {
 			return "Morning";
 		} else

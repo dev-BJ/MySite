@@ -1,6 +1,6 @@
 <?php
 
-class Core {
+class core {
 
 	public static function login($c,$u,$p,$rm) {
  		$sql="select user.id,user.user from user where user='$u' and pass='$p'";
@@ -33,21 +33,29 @@ class Core {
 	}
 	
 	public static function register($conn,$img,$user,$pass,$email,$gender,$date,$status) {
+	    error_reporting(E_ALL);
+	    $origin=$_SERVER["HTTP_ORIGIN"];
+	  
  		$sql="insert into user(img,user,pass,email,gender,dob,status) values('$img','$user','$pass','$email','$gender','$date','$status')";
-		$c="select * from user(user) where user='$user'";
-		#check
-		echo $c;
-$c=$conn->query($c);
-echo $conn;
-exit;
-		if($c->num_rows>=1) {
-			util::rdr("../auth/reg.php",md5("ext"));
+		$c="select * from user where user='$user'";
+        $c=$conn->query($c);
+        
+		if($c->num_rows>0) {
+		    echo "rdr 42";
+			header("Location:".$origin."/auth/reg.php?err=".md5("err"),true);
+			exit;
 		}
+		
 		#register
-if(!$conn->query($sql)) {
-			util::rdr("../auth/reg",md5("err"));
+		$reg=$conn->query($sql);
+        if($reg) {
+            echo "rdr 49";
+			header("Location:".$origin."/auth/reg.php?err=".md5("err"),true);
+			exit;
 		}
-		util::rdr("../auth/login");
+		echo "rdr 53";
+		header("Location:".$origin."/auth/login.php",true);
+		exit;
 	}
 
 	public static function upload($f) {

@@ -1,8 +1,8 @@
-<!doctype HTML>
 <?php
-include "../al.php";
-
+ob_start();
 session_start();
+
+include "../al.php";
 if(!isset($_SESSION["user"])) util::rdr("/index");
 
 $conn=mydb::conn();
@@ -10,6 +10,7 @@ $q="select * from user where id=".$_SESSION["id"];
 $q=$conn->query($q);
 $data=$q->fetch_assoc();
 ?>
+<!doctype HTML>
 	<html>
 		<head>
 			<link href="/css/style.css"  type="text/css"  rel="stylesheet" />
@@ -99,6 +100,7 @@ $data=$q->fetch_assoc();
                                 }
                             }
                             ?>
+                            <input type="submit" value="Update" />
                                </form>
                                </div>
                                </div>

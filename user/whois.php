@@ -1,4 +1,6 @@
 <?php
+ob_start();
+session_start();
 include "../al.php";
 
 if(!isset($_GET["user"])) util::rdr("/index");
@@ -7,7 +9,6 @@ $conn=mydb::conn();
 $q="select * from user where id=".$_GET["user"];
 $q=$conn->query($q);
 $data=$q->fetch_assoc();
-var_dump($data);
 ?>
 <!doctype HTML>
 	<html>

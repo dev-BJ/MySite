@@ -61,10 +61,10 @@ include "../al.php";
 					<div class="container-fluid">
 						<form method="post" action="/pcs/reg.php">
 		
-						<input type="text" id="reg" placeholder="Username" maxlength="20"  name="user" onblur="check(this.value)" class="form-control text-center text-info"/>
+						<input type="text" id="reg" placeholder="Username" maxlength="20"  name="user" class="form-control text-center text-info"/>
 						<span id="rid"></span>
 					
-					<input type="password" placeholder="Password" id="pass"  name="pass" onblur="p(this.value)" class="form-control text-center text-info" />
+					<input type="password" placeholder="Password" id="pass"  name="pass" onblur="" class="form-control text-center text-info" />
 					<span id="pid"></span>
 							
 						<input type="email" placeholder="E-mail" id="email"  name="email" class="form-control text-center text-info" />
@@ -80,9 +80,9 @@ include "../al.php";
 					
 					<input type="date" name="date" class="form-control text-center text-info" />
 					
-					<input type="submit" value="sign-up" onclick="sign()" class="sub" name="sign"/>
+					<input type="submit" value="sign-up" onclick="" class="sub" name="sign"/>
 				</form>
-				<span class="text-error" ><?=basic::err();?></span>
+				<span class="text-error" ><?php if(isset($_GET["err"])) basic::err($_GET["err"]); ?></span>
 			</div>
 		</div>
 	</div>
